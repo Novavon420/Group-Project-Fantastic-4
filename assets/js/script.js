@@ -1,6 +1,6 @@
 var searchBtn = document.querySelector("#search-btn");
 var playerInput = document.querySelector("#player-input");
-var player1Pic = document.querySelector("#player1-pic");
+var player1Pic = document.getElementById("player1-pic");
 var player2Pic = document.querySelector("#player2-pic");
 var player1Stats = document.querySelector("#player1-stats");
 var player2Stats = document.querySelector("#player2-stats");
@@ -10,6 +10,15 @@ var names = document.querySelector("#first-names")
 
 // Pulls player stats
 var getStats = function (playerID) {
+
+    document.querySelector("#p1-ppg-stat").textContent = ("");
+    document.querySelector("#p1-ast-stat").textContent = ("");
+    document.querySelector("#p1-reb-stat").textContent = ("");
+    document.querySelector("#p1-blk-stat").textContent = ("");
+    document.querySelector("#p1-stl-stat").textContent = ("");
+    document.querySelector("#p1-fg-stat").textContent = ("");
+    document.querySelector("#p1-fg3-stat").textContent = ("");
+
     console.log(playerID);
 
     var year = season.value;
@@ -74,15 +83,35 @@ var searchName = function (data) {
            // var runFirstName = function() {
 
            // } 
-            var playerID = (data.data[0].id)
-            getStats(playerID);            
-        });
-        
-    
 
-    
+            var first = (data.data[0].first_name)
+            var last = (data.data[0].last_name)        
+            var playerID = (data.data[0].id)
+            getStats(playerID);
+            viewImage(first, last);            
+        });    
 };
 
+var viewImage = function(first, last) {
+    console.log(first);
+    console.log(last);
+
+    console.log(player1Pic);
+
+    player1Pic.src = "https://nba-players.herokuapp.com/players/" + last + "/" + first;
+
+    console.log(player1Pic);
+
+    //fetch("https://nba-players.herokuapp.com/players/" + last + "/" + first)
+   // .then(function (response) {
+   //     return response.json();
+   // })
+  //  .then(function (data) {
+   //     console.log(data);
+   // });
+
+
+};
 
 
 searchBtn.addEventListener("click", searchName);
