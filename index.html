@@ -11,70 +11,91 @@
 </head>
 
 <body>
-    <header class="container has-background-primary">
-        <section class="columns is-mobile">
-            <div class="column">
+    <header class="container has-background-dark ">
+        <section class="columns is-mobile has-text-white">
+            <div class="column is-5">
                 <h1 class="is-size-1">Who's the Best?</h1>
                 <h3>Compare your favorite athletes</h3>
-            </div>
+            </div>            
         </section>
+        
     </header>
 
+    <!--Search Box-->
     <section class="container">
         <div class="columns is-mobile mx-2">
             <div class="column">
                 <div class="box mt-5 has-background-info">
                     <p>Choose your athletes to compare and post them on the court.</p>
-                    <input type="text" placeholder="name, team">
-                    <button>Search</button>
+                    <input id="player-input" type="text" placeholder="name, team">
+                    <button id="search-btn">Search</button>
                 </div>
             </div>
         </div>
     </section>
-    <section class="bball-court container box mx-4 mt-6">
+
+    <!--Basketball Court, Stats, and player photo-->
+    <section id="bball-court" class="container box mx-4 mt-6">
         <div class="columns is-vcentered is-mobile">
             <div class="column is-one-quarter">
-                <figure class="image is-128x128">
+                <figure id="player1-pic" class="image is-128x128">
                     <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
                 </figure>
             </div>
             <div class="column is-one-quarter">
-                <div class="card has-background-danger">
-                    <p>stats</p>
+                <div id="player1-stats" class="card has-background-danger">
+                    STATS
+                </br>
+                    <p>ppg: <span id="p1-ppg-stat"></span></p>
+                    <p>ast: <span id="p1-ast-stat"></span></p>
+                    <p>reb: <span id="p1-reb-stat"></span></p>
+                    <p>blk: <span id="p1-blk-stat"></span></p>
+                    <p>stl: <span id="p1-stl-stat"></span></p>
+                    <p>fg %: <span id="p1-fg-stat"></span></p>
+                    <p>fg3 %: <span id="p1-fg3-stat"></span></p>                                    
                 </div>
             </div>
 
             <div class="column is-one-quarter">
-                <div class="card has-background-danger">
-                    <p>stats</p>
+                <div id="player2-stats" class="card has-background-danger">
+                    STATS
+                </br>
+                    <p>ppg: <span id="p2-ppg-stat"></span></p>
+                    <p>ast: <span id="p2-ast-stat"></span></p>
+                    <p>reb: <span id="p2-reb-stat"></span></p>
+                    <p>blk: <span id="p2-blk-stat"></span></p>
+                    <p>stl: <span id="p2-stl-stat"></span></p>
+                    <p>fg %: <span id="p2-fg-stat"></span></p>
+                    <p>fg3 %: <span id="p2-fg3-stat"></span></p> 
                 </div>
             </div>
             <div class="column is-one-quarter">
-                <figure class="image is-128x128">
+                <figure id="player2-pic" class="image is-128x128">
                     <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
                 </figure>
             </div>
         </div>
     </section>
 
+    <!--Media content-->
     <section class="container has-background-warning">
         <div class="columns">
-            <div class="column is-one-quarter">
+            <div class="media-content column is-one-quarter">
                 <figure class="image is-128x128">
                     <img src="https://bulma.io/images/placeholders/128x128.png">
                 </figure>
             </div>
-            <div class="column is-one-quarter">
+            <div class="media-content column is-one-quarter">
                 <figure class="image is-128x128">
                     <img src="https://bulma.io/images/placeholders/128x128.png">
                 </figure>
             </div>
-            <div class="column is-one-quarter">
+            <div class="media-content column is-one-quarter">
                 <figure class="image is-128x128">
                     <img src="https://bulma.io/images/placeholders/128x128.png">
                 </figure>
             </div>
-            <div class="column is-one-quarter">
+            <div class="media-content column is-one-quarter">
                 <figure class="image is-128x128">
                     <img src="https://bulma.io/images/placeholders/128x128.png">
                 </figure>
@@ -86,6 +107,8 @@
     <footer class="container has-background-dark has-text-white">
         footer
     </footer>
+
+    <script src="./assets/js/script.js"></script>
 
 </body>
 
