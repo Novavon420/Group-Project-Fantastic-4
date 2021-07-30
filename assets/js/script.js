@@ -1,27 +1,71 @@
 var searchBtn = document.querySelector("#search-btn");
+var searchBtn2 = document.querySelector("#search-btn-2");
 var playerInput = document.querySelector("#player-input");
+var player2Input = document.querySelector("#player-input-2");
 var player1Pic = document.getElementById("player1-pic");
 var player2Pic = document.querySelector("#player2-pic");
 var player1Stats = document.querySelector("#player1-stats");
 var player2Stats = document.querySelector("#player2-stats");
 var mediaContent = document.querySelector(".media-content");
 var season = document.querySelector("#season");
+var season2 = document.querySelector("#season-2");
 var names = document.querySelector("#first-names")
+var counter = 0;
 
+var createStatList = function(playerObj) {
+
+    // creating the p elements of the div displaying Player Stats
+    var ppgItem = $("<p>").text("Ppg: " + playerObj.ppg);
+    var astItem = $("<p>").text("Ast: " + playerObj.ast);
+    var rebItem = $("<p>").text("Reb: " + playerObj.reb);
+    var blkItem = $("<p>").text("Blk: " + playerObj.blk);
+    var stlItem = $("<p>").text("Stl: " + playerObj.stl);
+    var fgItem = $("<p>").text("Fg %: " + playerObj.fg);
+    var fg3Item = $("<p>").text("Fg3 %: " + playerObj.fg3);
+
+    if (counter === 0) {
+    $("#player1-stats").empty();
+    $("#player1-stats").append(ppgItem)
+        .append(astItem)
+        .append(rebItem)
+        .append(blkItem)
+        .append(stlItem)
+        .append(fgItem)
+        .append(fg3Item);
+
+        counter++;
+    } else {
+        $("#player2-stats").empty();
+        $("#player2-stats").append(ppgItem)
+        .append(astItem)
+        .append(rebItem)
+        .append(blkItem)
+        .append(stlItem)
+        .append(fgItem)
+        .append(fg3Item);    
+        
+        counter = 0;
+    }
+}            
 // Pulls player stats
 var getStats = function (playerID) {
-
-    document.querySelector("#p1-ppg-stat").textContent = ("");
-    document.querySelector("#p1-ast-stat").textContent = ("");
-    document.querySelector("#p1-reb-stat").textContent = ("");
-    document.querySelector("#p1-blk-stat").textContent = ("");
-    document.querySelector("#p1-stl-stat").textContent = ("");
-    document.querySelector("#p1-fg-stat").textContent = ("");
-    document.querySelector("#p1-fg3-stat").textContent = ("");
-
-    console.log(playerID);
-
-    var year = season.value;
+    // set Player Object
+    var player = {
+    ppg: 0,
+    ast: 0,
+    reb: 0,
+    blk: 0,
+    stl: 0,
+    fg: 0,
+    fg3: 0
+    }
+    // check counter to see which search bar
+    if (counter === 0) {
+        var year = season.value;
+    } else {
+        var year = season2.value;
+    }
+    
     console.log(year);
 
     fetch("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=" + playerID + "&season=" + year)
@@ -30,21 +74,16 @@ var getStats = function (playerID) {
         })
         .then(function (data) {
             console.log(data);
-            document.querySelector("#p1-ppg-stat").textContent = (data.data[0].pts);
-            document.querySelector("#p1-ast-stat").textContent = (data.data[0].ast);
-            document.querySelector("#p1-reb-stat").textContent = (data.data[0].reb);
-            document.querySelector("#p1-blk-stat").textContent = (data.data[0].blk);
-            document.querySelector("#p1-stl-stat").textContent = (data.data[0].stl);
-            document.querySelector("#p1-fg-stat").textContent = (data.data[0].fg_pct);
-            document.querySelector("#p1-fg3-stat").textContent = (data.data[0].fg3_pct);
+            // assigning Player Object properties
+            $(player).attr("ppg", data.data[0].pts);
+            $(player).attr("ast", data.data[0].ast);
+            $(player).attr("reb" ,data.data[0].reb);
+            $(player).attr("blk" ,data.data[0].blk);
+            $(player).attr("stl" ,data.data[0].stl);
+            $(player).attr("fg" ,data.data[0].fg_pct);
+            $(player).attr("fg3" ,data.data[0].fg3_pct);
 
-           // document.querySelector("#p2-ppg-stat").textContent = (data.data[0].pts);
-           // document.querySelector("#p2-ast-stat").textContent = (data.data[0].ast);
-           // document.querySelector("#p2-reb-stat").textContent = (data.data[0].reb);
-           // document.querySelector("#p2-blk-stat").textContent = (data.data[0].blk);
-           // document.querySelector("#p2-stl-stat").textContent = (data.data[0].stl);
-           // document.querySelector("#p2-fg-stat").textContent = (data.data[0].fg_pct);
-           // document.querySelector("#p2-fg3-stat").textContent = (data.data[0].fg3_pct);
+            createStatList(player);
         });
 
     playerInput.value = "";
@@ -52,10 +91,14 @@ var getStats = function (playerID) {
 
 }
 
-
 // Search bar process
 var searchName = function (data) {
-    var lastName = playerInput.value;
+
+    if (counter === 0) {
+        var lastName = playerInput.value;
+    }else {
+        var lastName = player2Input.value;
+    }
 
     console.log(lastName)
 
@@ -65,24 +108,6 @@ var searchName = function (data) {
         })
         .then(function (data) {
             console.log(data);
-
-            // Display first names
-           // for (let i = 0; i < data.data.length; i++) {
-           //     var playerNames = (data.data[i].first_name)
-           //     console.log(playerNames);
-
-           //     var firstName = document.createElement("a");
-           //     firstName.classList = "is-size-6 has-text-white";                
-           //     firstName.textContent = playerNames + " / ";
-
-           //     names.appendChild(firstName);
-                
-           //     firstName.addEventListener("click", runFirstName);
-           // }
-
-           // var runFirstName = function() {
-
-           // } 
 
             var first = (data.data[0].first_name)
             var last = (data.data[0].last_name)        
@@ -97,10 +122,14 @@ var viewImage = function(first, last) {
     console.log(last);
 
     console.log(player1Pic);
+    if (counter === 0) {
+        player1Pic.src = "https://nba-players.herokuapp.com/players/" + last + "/" + first;
+    } else {
+        player2Pic.src = "https://nba-players.herokuapp.com/players/" + last + "/" + first;
 
-    player1Pic.src = "https://nba-players.herokuapp.com/players/" + last + "/" + first;
+    }
 
-    console.log(player1Pic);
+    
 
     //fetch("https://nba-players.herokuapp.com/players/" + last + "/" + first)
    // .then(function (response) {
@@ -115,4 +144,5 @@ var viewImage = function(first, last) {
 
 
 searchBtn.addEventListener("click", searchName);
+searchBtn2.addEventListener("click", searchName);
 

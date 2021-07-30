@@ -25,14 +25,36 @@
     <section class="container">
         <div class="columns is-mobile mx-2">
             <div class="column">
-                <div class="box mt-5 has-background-info">
+                <div class="box mt-5 has-background-info column">
                     <p>Choose an NBA player and season.</p>
-                    <input id="player-input" type="text" placeholder="players full name" name="search">
+                    <input id="player-input" type="text" placeholder="Players Full Name" name="search">
                     <button id="search-btn">Search</button>
                     <div>
-                        <input id="season" type="text" placeholder="year" name="search">
+                        <input id="season" type="text" placeholder="Year" name="search">
                         <div id="first-names"></div>
                     </div>
+                </div>   
+            </div>
+            <div class="column is-one-fifth"> 
+                <div class="mt-6">
+                    <h1 class="has-text-centered is-size-2">VS.</h1>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box mt-5 has-background-info column">
+                    <p>Choose an NBA player and season.</p>
+                    <input id="player-input-2" type="text" placeholder="Players Full Name" name="search">
+                    <button id="search-btn-2">Search</button>
+                    <div>
+                        <input id="season-2" type="text" placeholder="Year" name="search">
+                        <div id="first-names"></div>
+                    </div>
+                </div>   
+            </div>
+            <div class="column is-one-fifth"> 
+                <div class="box mt-5 has-background-info ">
+                    <p>Save your comparison?</p>
+                    <button>Save</button>
                 </div>
             </div>
         </div>
@@ -41,44 +63,32 @@
     <!--Basketball Court, Stats, and player photo-->
     <section id="bball-court" class="container box mx-4 mt-6">
         <div class="columns is-vcentered is-mobile">
-            <div class="column is-one-quarter">
+            <div class="column">
                 <figure class="image is-128x128">
                     <img id="player1-pic" class="is-rounded">
                 </figure>
             </div>
-            <div class="column is-2">
-                <div id="player1-stats" class="card has-background-dark has-text-white">
-                    STATS
-                </br>
-                    <p>ppg: <span id="p1-ppg-stat"></span></p>
-                    <p>ast: <span id="p1-ast-stat"></span></p>
-                    <p>reb: <span id="p1-reb-stat"></span></p>
-                    <p>blk: <span id="p1-blk-stat"></span></p>
-                    <p>stl: <span id="p1-stl-stat"></span></p>
-                    <p>fg %: <span id="p1-fg-stat"></span></p>
-                    <p>fg3 %: <span id="p1-fg3-stat"></span></p>                                    
-                </div>
-    <!--        </div>
-
-            <div class="column is-one-quarter">
-                <div id="player2-stats" class="card has-background-danger">
-                    STATS
-                </br>
-                    <p>ppg: <span id="p2-ppg-stat"></span></p>
-                    <p>ast: <span id="p2-ast-stat"></span></p>
-                    <p>reb: <span id="p2-reb-stat"></span></p>
-                    <p>blk: <span id="p2-blk-stat"></span></p>
-                    <p>stl: <span id="p2-stl-stat"></span></p>
-                    <p>fg %: <span id="p2-fg-stat"></span></p>
-                    <p>fg3 %: <span id="p2-fg3-stat"></span></p> 
+            <div class="column">
+                <div class="card has-background-dark has-text-white">
+                    <h2 class=" mx-2 mt-2 mb-3 is-underlined">STATS</h2>
+                    <div id="player1-stats" class="mx-2">
+     
+                    </div>                             
                 </div>
             </div>
-            <div class="column is-one-quarter">
-                <figure id="player2-pic" class="image is-128x128">
-                    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+            <div class="column">
+                <div class="card has-background-dark has-text-white">
+                    <h2 class=" mx-2 mt-2 mb-3 is-underlined">STATS</h2>
+                    <div id="player2-stats" class="mx-2">
+      
+                    </div>                             
+                </div>
+            </div> 
+           <div class="column">
+                <figure class="image is-128x128">
+                    <img id="player2-pic" class="is-rounded">
                 </figure>
-            </div> -->
-        </div>
+            </div>
     </section>
 
     <!--Media content-->
@@ -117,6 +127,7 @@
     </footer>
 
     <script src="./assets/js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </body>
 
