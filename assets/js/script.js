@@ -1,5 +1,6 @@
 var searchBtn = document.querySelector("#search-btn");
 var searchBtn2 = document.querySelector("#search-btn-2");
+var saveBtn = document.querySelector("#save-button");
 var playerInput = document.querySelector("#player-input");
 var player2Input = document.querySelector("#player-input-2");
 var player1Pic = document.getElementById("player1-pic");
@@ -11,10 +12,18 @@ var season = document.querySelector("#season");
 var season2 = document.querySelector("#season-2");
 var names = document.querySelector("#first-names")
 var counter = 0;
+var player1Name = "";
+var player2Name = "";
+var players = {
+    playerOne: "",
+    playerTwo: ""
+}
+var pastPlayerHistory = [];
 
 var createStatList = function(playerObj) {
 
     // creating the p elements of the div displaying Player Stats
+$("<p>").text("Name:" + player1Name);
     var ppgItem = $("<p>").text("Ppg: " + playerObj.ppg);
     var astItem = $("<p>").text("Ast: " + playerObj.ast);
     var rebItem = $("<p>").text("Reb: " + playerObj.reb);
@@ -25,7 +34,8 @@ var createStatList = function(playerObj) {
 
     if (counter === 0) {
     $("#player1-stats").empty();
-    $("#player1-stats").append(ppgItem)
+    $("#player1-stats").append($("<p class='mb-2'>").text("Name: " + player1Name))
+        .append(ppgItem)
         .append(astItem)
         .append(rebItem)
         .append(blkItem)
@@ -36,7 +46,8 @@ var createStatList = function(playerObj) {
         counter++;
     } else {
         $("#player2-stats").empty();
-        $("#player2-stats").append(ppgItem)
+        $("#player2-stats").append($("<p class='mb-2'>").text("Name: " + player2Name))
+        .append(ppgItem)
         .append(astItem)
         .append(rebItem)
         .append(blkItem)
@@ -51,6 +62,7 @@ var createStatList = function(playerObj) {
 var getStats = function (playerID) {
     // set Player Object
     var player = {
+    Name: "",
     ppg: 0,
     ast: 0,
     reb: 0,
@@ -112,25 +124,27 @@ var searchName = function (data) {
             var first = (data.data[0].first_name)
             var last = (data.data[0].last_name)        
             var playerID = (data.data[0].id)
+
+            if(counter === 0) {
+                players.playerOne = data.data[0].first_name + " " + data.data[0].last_name;
+            } else {
+                players.playerTwo = data.data[0].first_name + " " + data.data[0].last_name;
+            }
+
+            console.log(players);
             getStats(playerID);
             viewImage(first, last);            
         });    
 };
 
 var viewImage = function(first, last) {
-    console.log(first);
-    console.log(last);
 
-    console.log(player1Pic);
     if (counter === 0) {
         player1Pic.src = "https://nba-players.herokuapp.com/players/" + last + "/" + first;
     } else {
         player2Pic.src = "https://nba-players.herokuapp.com/players/" + last + "/" + first;
 
     }
-
-    
-
     //fetch("https://nba-players.herokuapp.com/players/" + last + "/" + first)
    // .then(function (response) {
    //     return response.json();
@@ -138,11 +152,65 @@ var viewImage = function(first, last) {
   //  .then(function (data) {
    //     console.log(data);
    // });
-
-
 };
 
+var inputCheck = function () {
+    if (counter === 0) {
+        var input = playerInput.value;
+    } else {
+        var input = player2Input.value;
+    }
+    
+    if (input === null || input === "") {
+        return;
+    } else {searchName(); }
+}
 
-searchBtn.addEventListener("click", searchName);
-searchBtn2.addEventListener("click", searchName);
+var printPlayers = function(players) {
 
+        var playersItem = $("<div class='box mb-1 mt-1'>");
+        var playerBox = $("#past-players");
+        var pastPlayerText = players.playerOne + " VS. "  + players.playerTwo;
+        playersItem.text(pastPlayerText);
+        playerBox.append(playersItem);
+
+}
+
+var savePlayers = function() {
+
+    pastPlayerHistory.push(players);
+    localStorage.setItem("players", JSON.stringify(pastPlayerHistory));
+    var pastPlayersItem = $("<div class='box mb-1 mt-1'>");
+    var pastPlayerBox = $("#past-players");
+    var pastPlayerText = players.playerOne + " VS. "  + players.playerTwo;
+    pastPlayersItem.text(pastPlayerText);
+    pastPlayerBox.append(pastPlayersItem);
+  };
+
+var loadPastPlayers = function() {
+    storedPlayers = JSON.parse(localStorage.getItem("players"));
+    if (!storedPlayers) {
+        return;
+    }
+    storedPlayers.forEach(function(items) {
+        pastPlayerHistory.push(items);
+    })
+    for (let i = 0; i < pastPlayerHistory.length; i++) {
+        printPlayers(pastPlayerHistory[i]);
+    }
+    
+    console.log(pastPlayerHistory);
+
+}
+
+debugger;
+searchBtn.addEventListener("click", function () {inputCheck();});
+searchBtn2.addEventListener("click", function () {inputCheck();});
+saveBtn.addEventListener("click", function () {savePlayers();});
+
+// searchBtn.addEventListener("click", searchName);
+// searchBtn2.addEventListener("click", searchName);
+
+loadPastPlayers();
+
+// maybe add a true/false eventlistener for verifying which player 1 or 2 is being run
