@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
-    <title>Document</title>
+    <title>Who's The Best?</title>
 </head>
 
 <body>
     <header class="container has-background-dark ">
         <section class="columns is-mobile has-text-white">
-            <div class="column is-5">
+            <div class="column ml-3 is-5">
                 <h1 class="is-size-1">Who's the Best?</h1>
                 <h3>View you favorite NBA players stats</h3>
-            </div>            
+            </div>
         </section>
-        
+
     </header>
 
     <!--Search Box-->
@@ -29,14 +29,16 @@
                 <div class="box mt-5 has-background-info column">
                     <p>Choose an NBA player and season.</p>
                     <div>
-                        <input id="player-input" class="input is-focused is-info" type="text" placeholder="Players Full Name" name="search">
-                        <input id="season" class="input is-focused is-info" type="text" placeholder="Year" name="search">
+                        <input id="player-input" class="input is-focused is-info" type="text"
+                            placeholder="Players Full Name" name="search">
+                        <input id="season" class="input is-focused is-info" type="text" placeholder="Year"
+                            name="search">
                         <a class="button" id="search-btn">Search</a>
                         <div id="first-names"></div>
                     </div>
-                </div>   
+                </div>
             </div>
-            <div class="column is-one-fifth"> 
+            <div class="column is-one-fifth">
                 <div class="mt-6">
                     <h1 class="has-text-centered is-size-2">VS.</h1>
                 </div>
@@ -45,57 +47,59 @@
                 <div class="box mt-5 has-background-info column">
                     <p>Choose an NBA player and season.</p>
                     <div>
-                        <input id="player-input-2" class="input is-focused is-info" type="text" placeholder="Players Full Name" name="search">
-                        <input id="season-2" class="input is-focused is-info" type="text" placeholder="Year" name="search">
+                        <input id="player-input-2" class="input is-focused is-info" type="text"
+                            placeholder="Players Full Name" name="search">
+                        <input id="season-2" class="input is-focused is-info" type="text" placeholder="Year"
+                            name="search">
                         <a class="button" id="search-btn-2">Search</a>
                         <div id="first-names"></div>
                     </div>
-                </div>   
+                </div>
             </div>
-            <div class="column is-one-fifth"> 
+            <div class="column is-one-fifth">
                 <div class="save-box box mt-5 has-background-info ">
                     <p>Save your comparison?</p>
-                    <a class = "button" id= "save-button">Save</a>
+                    <a class="button" id="save-button">Save</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!--Basketball Court, Stats, and player photo-->
-    <div class= "columns is-centered">
+    <div class="columns is-centered">
         <section id="bball-court" class=" column container box mx-4 mt-6">
-        <!-- Player picture -->
-        <div class="columns is-vcentered is-mobile">
-            <div class="column">
-                <figure class="image is-128x128">
-                    <img id="player1-pic" class="is-rounded">
-                </figure>
-            </div>
-            <!-- Stat Card -->
-            <div class="column">
-                <div class="card has-background-dark has-text-white">
-                    <h2 class=" mx-2 mt-2 mb-3 is-underlined">STATS</h2>
-                    <div id="player1-stats" class="mx-2">
-     
-                    </div>                             
-                </div>
-            </div>
-            <!-- Stat Card -->
-            <div class="column">
-                <div class="card has-background-dark has-text-white">
-                    <h2 class=" mx-2 mt-2 mb-3 is-underlined">STATS</h2>
-                    <div id="player2-stats" class="mx-2">
-      
-                    </div>                             
-                </div>
-            </div> 
             <!-- Player picture -->
-           <div class="column">
-                <figure class="image is-128x128">
-                    <img id="player2-pic" class="is-rounded">
-                </figure>
-            </div>
-    </section>
+            <div class="columns is-vcentered is-mobile">
+                <div class="column">
+                    <figure class="image is-128x128">
+                        <img id="player1-pic" class="is-rounded">
+                    </figure>
+                </div>
+                <!-- Stat Card -->
+                <div class="column">
+                    <div class="card has-background-dark has-text-white">
+                        <h2 class=" mx-2 mt-2 mb-3 is-underlined">STATS</h2>
+                        <div id="player1-stats" class="mx-2">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Stat Card -->
+                <div class="column">
+                    <div class="card has-background-dark has-text-white">
+                        <h2 class=" mx-2 mt-2 mb-3 is-underlined">STATS</h2>
+                        <div id="player2-stats" class="mx-2">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Player picture -->
+                <div class="column">
+                    <figure class="image is-128x128">
+                        <img id="player2-pic" class="is-rounded">
+                    </figure>
+                </div>
+        </section>
     </div>
     <!-- Saved players -->
     <div class="columns is-centered">
@@ -104,14 +108,14 @@
             <div class="box column is-half has-background-info" id="past-players">
 
             </div>
-            
+
         </div>
     </div>
 
-    
+
 
     <!--Media content-->
- <!--   <section class="container has-background-warning">
+    <!--   <section class="container has-background-warning">
         <div class="columns">
             <div class="media-content column is-one-quarter">
                 <figure class="image is-128x128">
@@ -137,17 +141,17 @@
 
     </section> -->
 
-    <footer class=" navbar is-fixed-bottom container is-max-widescreen has-background-dark has-text-white">
+    <footer class=" footer is-fixed-bottom container  pb-4 pt-4 is-max-widescreen has-background-dark has-text-white">
         <div class="column is-8">
             <p class="bd-notification is primary">
                 &copy; Fantastic Four, Inc.
-        </p>
+            </p>
         </div>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
-    
+
 
 </body>
 
