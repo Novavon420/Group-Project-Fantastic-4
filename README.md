@@ -11,7 +11,7 @@ A website that compares NBA players stats by year/season.
 
 ## Screenshot
 
-![Who's The Best Screenshot](assets/images/Who's The Best.png)
+![Who's The Best Screenshot](assets/images/Who's%20The%20Best.png)
 
 ## Website
 https://novavon420.github.io/Group-Project-Fantastic-4/
