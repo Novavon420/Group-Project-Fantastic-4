@@ -125,8 +125,6 @@ var searchName = function (data) {
             } else {
                 players.playerTwo = data.data[0].first_name + " " + data.data[0].last_name;
             }
-            debugger;
-
             console.log(players);
             getStats(playerID);
             viewImage(first, last);
